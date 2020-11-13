@@ -1,0 +1,29 @@
+﻿@model TripListViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Destination</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Accomodations</th>
+                <th>Things To Do</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @foreach (var Trip in Trip)
+                {
+                    <th asp-for="@Trip.Destination"></th>
+                    <th asp-for="@Trip.StartDate"></th>
+                    <th asp-for="@Trip.EndDate"></th>
+                    <th asp-for="@Trip.Accomodation"></th>
+                    <th asp-for="@Trip.Activity1 @Trip.Activity2 @Trip.Activity3"></th>
+                }
+            </tr>
+        </tbody>
+    </table>
+</div>
