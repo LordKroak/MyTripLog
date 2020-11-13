@@ -15,15 +15,14 @@ namespace MyTripLog.Controllers
 
         public HomeController(TripContext ctx)
         {
-            Context = ctx;
+            this.Context = ctx;
         }
 
         public ViewResult Index()
         {
             // pass trips to view as model, converts into database / list
-            TripListViewModel trip = new TripListViewModel();
-            trip.TripList = Context.Trip.ToList();
-            return View(trip);
+            List<Trip> trips = Context.Trips.OrderBy(t => t.StartDate).ToList();
+            return View(trips);
         }
     }
 }

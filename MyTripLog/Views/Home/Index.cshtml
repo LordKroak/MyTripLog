@@ -1,29 +1,57 @@
-﻿@model TripListViewModel
+﻿@model IEnumerable<Trip>
 @{
-    ViewData["Title"] = "Home Page";
+    ViewBag.Title = "My Trip Log";
 }
-<div class="container">
-    <table class="table">
-        <thead>
+
+<strong><a asp-action="Add" asp-controller="Trip" class="mt-2">Add Trip</a></strong>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Destination</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Accomodations</th>
+            <th>Things To Do</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Trip trip in Model)
+        {
             <tr>
-                <th>Destination</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Accomodations</th>
-                <th>Things To Do</th>
+                <td asp-for=@trip.Destination><div>@trip.Destination</div></td>
+                <td asp-for=@trip.StartDate?.ToShortDateString()><div>@trip.StartDate?.ToShortDateString()</div></td>
+                <td asp-for=@trip.EndDate?.ToShortDateString()><div>@trip.EndDate?.ToShortDateString()</div></td>
+                <td>
+                    @if (!string.IsNullOrEmpty(trip.AccName))
+                    {
+                        <div>@trip.AccName</div>
+                        @if (!string.IsNullOrEmpty(trip.AccPhone))
+                        {
+                            <div>Phone: @trip.AccPhone</div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(trip.AccEmail))
+                        {
+                            <div>Email: @trip.AccEmail</div>
+                        }
+                    }
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(trip.Activity1))
+                    {
+                        <div>@trip.Activity1</div>
+                    }
+                    @if (!string.IsNullOrEmpty(trip.Activity2))
+                    {
+                        <div>@trip.Activity2</div>
+                    }
+                    @if (!string.IsNullOrEmpty(trip.Activity3))
+                    {
+                        <div>@trip.Activity3</div>
+                    }
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            <tr>
-                @foreach (var Trip in Trip)
-                {
-                    <th asp-for="@Trip.Destination"></th>
-                    <th asp-for="@Trip.StartDate"></th>
-                    <th asp-for="@Trip.EndDate"></th>
-                    <th asp-for="@Trip.Accomodation"></th>
-                    <th asp-for="@Trip.Activity1 @Trip.Activity2 @Trip.Activity3"></th>
-                }
-            </tr>
-        </tbody>
-    </table>
-</div>
+        }
+
+    </tbody>
+</table>

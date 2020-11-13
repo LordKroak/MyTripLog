@@ -1,25 +1,29 @@
-﻿@model Trip
+﻿@model TripListViewModel
 @{
-    ViewBag.Title = "Page1";
+    ViewBag.Title = "Add Trip - Page 1";
+    ViewBag.Subheader = "Add Trip Destination and Dates";
 }
-<h4>Add Trip Destination and Dates</h4>
-<div asp-validation-summary="All">
-    <div>
-        <label asp-for="Destination">Destination</label>
-        <input asp-for="Destination" />
+<div asp-validation-summary="All" class="text-danger"></div>
+<form asp-action="Add">
+    <input type="hidden" asp-for="PageNum" />
+    <div class="form-group">
+        <label asp-for="Trip.Destination">Destination</label>
+        <input asp-for="Trip.Destination" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Trip.AccName">Accommodations</label>
+        <input asp-for="Trip.AccName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Trip.StartDate">Start Date</label>
+        <input asp-for="Trip.StartDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Trip.EndDate">End Date</label>
+        <input asp-for="Trip.EndDate" class="form-control" />
     </div>
     <div>
-        <label asp-for="AccName">Accommodations</label>
-        <input asp-for="AccName" />
+        <button type="submit" class="btn btn-dark">Next</button>
+        <a asp-action="Cancel" class="btn btn-outline-dark">Cancel</a>
     </div>
-    <div>
-        <label asp-for="StartDate">Start Date</label>
-        <input asp-for="StartDate" />
-    </div>
-    <div>
-        <label asp-for="EndDate">End Date</label>
-        <input asp-for="EndDate" />
-    </div>
-</div>
-<a class="btn btn-dark" asp-action="Index" asp-route-id="Page2">Next</a>
-<a class="btn btn-light" asp-action="Index" asp-route-id="Index">Cancel</a>
+</form>

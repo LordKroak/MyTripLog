@@ -1,7 +1,20 @@
-﻿@model Trip
+﻿@model TripListViewModel
 @{
-    ViewBag.Title = "Page2";
+    ViewBag.Title = "Add Trip - Page 2";
+    ViewBag.Subheader = $"Add Info for {Model.Trip.AccName}";
 }
-<h4>Add Info for @Model.AccName</h4>
-<a class="btn btn-dark" asp-action="Index" asp-route-id="Page3">Next</a>
-<a class="btn btn-light" asp-action="Index" asp-route-id="Index">Cancel</a>
+<form asp-action="Add">
+    <input type="hidden" asp-for="PageNum" />
+    <div class="form-group">
+        <label asp-for="Trip.AccPhone">Phone Number</label>
+        <input asp-for="Trip.AccPhone" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Trip.AccEmail">Email</label>
+        <input asp-for="Trip.AccEmail" class="form-control" />
+    </div>
+    <div>
+        <button type="submit" class="btn btn-dark">Next</button>
+        <a asp-action="Cancel" class="btn btn-outline-dark">Cancel</a>
+    </div>
+</form>
