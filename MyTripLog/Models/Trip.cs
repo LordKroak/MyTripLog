@@ -8,18 +8,20 @@ namespace MyTripLog.Models
 {
     public class Trip
     {
-        public int TripID { get; set; }
-        [Required(ErrorMessage = "Please enter a destination.")]
-        public string Destination { get; set; } 
+
+        public int TripID { get; set; } // hold pkey
+
+        public int DestinationID { get; set; } //pkey
+        public Destination Destination { get; set; } //nav to destination
+
+        public int? AccommodationID { get; set; } //pkey
+        public Accommodation Accommodation { get; set; } //nav to acc
+        
         [Required(ErrorMessage = "Please enter the start date of your trip.")]
         public DateTime? StartDate { get; set; }
         [Required(ErrorMessage = "Please enter the end date of your trip.")]
         public DateTime? EndDate { get; set; }
-        public string AccName { get; set; }
-        public string AccPhone { get; set; }
-        public string AccEmail { get; set; }
-        public string Activity1 { get; set; }
-        public string Activity2 { get; set; }
-        public string Activity3 { get; set; }
+
+        public ICollection<TripActivity> TripActivities { get; set; } //nav to multiple activities
     }
 }

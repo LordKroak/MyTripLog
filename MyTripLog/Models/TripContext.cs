@@ -12,7 +12,9 @@ namespace MyTripLog.Models
             : base(options)
         { }
 
+        public DbSet<Accommodation> Accommodations { get; set; }
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<Destination> Destinations { get; set; }
         public DbSet<Trip> Trips { get; set; }
-        
     }
 }

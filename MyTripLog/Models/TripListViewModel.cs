@@ -9,7 +9,10 @@ namespace MyTripLog.Models
     public class TripListViewModel
     {
         public Trip Trip { get; set; }
-        public List<Trip> TripList { get; set; }
+        public IEnumerable<Accommodation> Accommodations { get; set; }
+        public IEnumerable<Activity> Activities { get; set; }
+        public IEnumerable<Destination> Destinations { get; set; }
+        
         public int PageNum { get; set; }
     }
 }
